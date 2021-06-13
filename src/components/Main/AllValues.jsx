@@ -1,6 +1,9 @@
 import React from "react";
 import Calc from "./Calc";
 
+const token = 'your token';
+const value = 'UAH';
+
 class AllValues extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +17,7 @@ class AllValues extends React.Component {
 
   getRate = () => {
     fetch(
-      "https://v6.exchangerate-api.com/v6/32bf61e4be0fa2d9c249035d/latest/EUR"
+      `https://v6.exchangerate-api.com/v6/${token}/latest/${value}`
     )
       .then((data) => {
         return data.json();
@@ -40,7 +43,7 @@ class AllValues extends React.Component {
               <div className="valMain_value" key={keyName}>
                 <h3>{keyName}</h3>
                 <p>{this.state.currencyRate[keyName].toFixed(2)}</p>
-                <p>* за 1 EUR</p>
+                <p>* за 1 {value}</p>
               </div>
             ))}
           </div>
